@@ -29,3 +29,33 @@ let arr2 = [1, 2];
 console.log(JSON.stringify(arr1) == JSON.stringify(arr2)) // true
 
 ```
+
+### How to remove duplicate values of array of object?
+```
+let arrayWithDuplicateObj = [
+  {
+    obj1: 1234
+  }, 
+  {
+    obj2: 34567,
+  },
+  {
+    obj1: 1234
+  }
+]
+
+
+let uniqueArray = [...new Set(arrayWithDuplicateObj.map(JSON.stringify))].map(JSON.parse);
+
+console.log(uniqueArray); // [{obj1: 1234}, {obj2: 34567}]
+
+// another way
+let stringArrObj = JSON.stringify(arrayWithDuplicateObj).replace("[", "").replace("]", "").split(",");
+
+let uniqueArray = [...new Set(stringArrObj)];
+
+let finalArray = JSON.parse("[ " + uniqueArray.toString() + "]");
+
+console.log(finalArray); // [{obj1: 1234}, {obj2: 34567}]
+
+```
